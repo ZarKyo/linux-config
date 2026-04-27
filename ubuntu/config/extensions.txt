@@ -1,0 +1,11 @@
+yzhang.markdown-all-in-one
+yzane.markdown-pdf
+christian-kohler.path-intellisense
+laktak.hjson
+eriklynd.json-tools
+mechatroner.rainbow-csv
+ms-azuretools.vscode-docker
+ms-python.debugpy
+ms-python.python
+ms-python.vscode-pylance
+usernamehw.errorlens
