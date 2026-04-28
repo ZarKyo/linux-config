@@ -24,10 +24,9 @@ else
     "https://discord.com/api/download?platform=linux&format=deb" \
     -o "$DEB_PATH"
 
-  # Install the package (requires sudo)
   echo "Installing Discord..."
-  sudo apt update
-  sudo apt install -y "$DEB_PATH"
+  apt update
+  apt install -y "$DEB_PATH"
 
   # Remove the .deb file
   echo "Removing file $DEB_PATH..."
@@ -44,15 +43,15 @@ if [ ! -f "/usr/bin/signal-desktop" ]; then
     wget -O /tmp/signal_gpg https://updates.signal.org/desktop/apt/keys.asc
 
     # De-Armor Signal GPG key
-    sudo gpg --dearmor < /tmp/signal_gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+    gpg --dearmor < /tmp/signal_gpg | tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
     rm /tmp/signal_gpg
 
     # Add Signal repository line to sources.list.d
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main" | sudo tee /etc/apt/sources.list.d/signal-xenial.list
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main" | tee /etc/apt/sources.list.d/signal-xenial.list
 
     # Update package cache and install Signal
-    sudo apt update
-    sudo apt install -y signal-desktop
+    apt update
+    apt install -y signal-desktop
 
     echo "Signal installation completed."
 else
@@ -76,19 +75,19 @@ echo "CameraCtrls not installed (sentinel file missing), proceeding with install
 
 # Install required packages for cameractrls
 echo "Installing required packages..."
-sudo apt update
-sudo apt install -y libsdl2-2.0-0 libturbojpeg git desktop-file-utils
+apt update
+apt install -y libsdl2-2.0-0 libturbojpeg git desktop-file-utils
 
 # Clone cameractrls repository
 echo "Cloning cameractrls repository into $CAMERACTRLS_DIR..."
 if [ -d "$CAMERACTRLS_DIR" ]; then
-  sudo rm -rf "$CAMERACTRLS_DIR"
+  rm -rf "$CAMERACTRLS_DIR"
 fi
-sudo git clone https://github.com/soyersoyer/cameractrls.git "$CAMERACTRLS_DIR"
+git clone https://github.com/soyersoyer/cameractrls.git "$CAMERACTRLS_DIR"
 
 # Change ownership of the directory
 echo "Changing ownership of $CAMERACTRLS_DIR to ${USER_NAME}:${GROUP_NAME}..."
-sudo chown -R "$USER_NAME:$GROUP_NAME" "$CAMERACTRLS_DIR"
+chown -R "$USER_NAME:$GROUP_NAME" "$CAMERACTRLS_DIR"
 
 # Ensure applications directory exists
 mkdir -p "${HOME}/.local/share/applications"

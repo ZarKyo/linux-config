@@ -3,8 +3,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-VERBOSE="> /dev/null 2> /dev/null"
-
 export PATH="$PATH:$HOME/.local/bin"
 
 if [[ ! $(grep -F 24.04 /etc/issue.net -c) -eq 1 ]] ; then 

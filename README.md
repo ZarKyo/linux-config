@@ -1,5 +1,7 @@
 # Linux Configuration
 
+[![Super-Linter](https://github.com/ZarKyo/linux-config/actions/workflows/linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 Post-installation configuration scripts for Ubuntu 24.04. Automates the setup of a daily-use workstation: development tools, security utilities, shell environment, desktop applications, and system hardening.
 
 ## Prerequisites
@@ -39,14 +41,14 @@ sudo bash pre-install.sh --laptop   # base setup + laptop-specific apps
 - Most operations are idempotent; re-running is safe.
 - A logout is required after the first run for the Zsh shell change to take effect.
 
-# Disclaimer
+## Disclaimer
 
 These scripts modify system configuration, install many packages, and change security settings.
 Review them carefully before running on a production or sensitive machine.
 
 ---
 
-# Thanks to
+## Thanks to
 
 - <https://github.com/laluka/lalubuntu>
 - <https://github.com/laluka/SkillArch>

@@ -31,7 +31,7 @@ export PATH="$PATH:$HOME/.local/bin"
 # Always run install.sh
 echo "[*] Running install.sh"
 bash install.sh
-curl -fsSL https://raw.githubusercontent.com/ZarKyo/utils/refs/heads/main/install-docker.sh -o install-docker.sh
+curl -fsSL https://raw.githubusercontent.com/ZarKyo/utils/refs/heads/main/bin/install-docker.sh -o install-docker.sh
 chmod +x install-docker.sh
 sh install-docker.sh
 
