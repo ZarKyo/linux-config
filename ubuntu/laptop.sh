@@ -40,7 +40,7 @@ if [ ! -f "/usr/bin/signal-desktop" ]; then
     wget -O /tmp/signal_gpg https://updates.signal.org/desktop/apt/keys.asc
 
     # De-Armor Signal GPG key
-    sudo gpg --dearmor < /tmp/signal_gpg | tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+    sudo cat /tmp/signal_gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
     rm /tmp/signal_gpg
 
     # Add Signal repository line to sources.list.d
