@@ -3,12 +3,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# Check if root and if Ubuntu 
-if [ "$EUID" -ne 0 ]
-  then echo " ❌ Please run as root"
-  exit
-fi
-
 # Handle the --laptop argument
 RUN_LAPTOP_SCRIPT=false
 for arg in "$@"; do
@@ -16,6 +10,9 @@ for arg in "$@"; do
         RUN_LAPTOP_SCRIPT=true
     fi
 done
+
+# Force sudo password prompt early
+sudo -v
 
 echo "[*] Setting DNS to Google for stability"
 echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
@@ -33,7 +30,7 @@ echo "[*] Running install.sh"
 bash install.sh
 curl -fsSL https://raw.githubusercontent.com/ZarKyo/utils/refs/heads/main/bin/install-docker.sh -o install-docker.sh
 chmod +x install-docker.sh
-sh install-docker.sh
+sudo sh install-docker.sh
 
 # Run laptop script if --laptop is provided
 if [ "$RUN_LAPTOP_SCRIPT" = true ]; then

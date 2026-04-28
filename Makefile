@@ -4,6 +4,9 @@ all: ubuntu
 ubuntu:
 	cd ubuntu && bash pre-install.sh
 
+ubuntu-laptop:
+	cd ubuntu && bash pre-install.sh --laptop
+
 clean:
 	echo "TODO"
 

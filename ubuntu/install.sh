@@ -4,17 +4,12 @@ set -euo pipefail
 IFS=$'\n\t'
 
 export PATH="$PATH:$HOME/.local/bin"
+export DEBIAN_FRONTEND=noninteractive
 
 if [[ ! $(grep -F 24.04 /etc/issue.net -c) -eq 1 ]] ; then 
     echo "Install has been tested on Ubuntu 24.04 only."
     echo "Please install Ubuntu 24.04 or attempt install at your own risks"
     exit 42
-fi
-
-# Check if root and if Ubuntu 
-if [ "$EUID" -ne 0 ]
-  then echo " ❌ Please run as root"
-  exit
 fi
 
 if [ -x "$(command -v apt)" ]; then
@@ -23,6 +18,9 @@ else
     echo 'This script is only compatible Ubuntu'
     exit
 fi
+
+# Force sudo password prompt early
+sudo -v
 
 # Update System
 ## 1. Disable Ubuntu Pro ESM spam messages if the hook exists
@@ -162,42 +160,42 @@ sudo apt install -y fastfetch
 mkdir -p ~/.local/share/cheats
 mkdir -p ~/.config/cheat
 
-# VScode part
+# VS Code part
 DEB_PATH="/tmp/vscode-setup.deb"
 VSCODE_BIN="/usr/bin/code"
 
 # Check if VS Code is already installed
 if command -v code >/dev/null 2>&1 || [ -x "$VSCODE_BIN" ]; then
-  echo "VS Code is already installed."
+    echo "VS Code is already installed."
 else
-  echo "VS Code is not installed, downloading .deb package..."
+    echo "VS Code is not installed, downloading .deb package..."
 
-  # Download the VS Code package
-  curl -L \
+    # Download the VS Code package
+    curl -L \
     -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) snap Chromium/83.0.4103.106 Chrome/83.0.4103.106 Safari/537.36" \
     "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" \
     -o "$DEB_PATH"
 
-  # Install the package 
-  echo "Installing VS Code..."
-  echo n | sudo apt install -y "$DEB_PATH"
+    # Install the package 
+    echo "Installing VS Code..."
+    sudo apt install -y "$DEB_PATH"
 
-  # Remove the .deb file
-  echo "Removing file $DEB_PATH..."
-  rm -f "$DEB_PATH"
+    # Remove the .deb file
+    echo "Removing file $DEB_PATH..."
+    rm -f "$DEB_PATH"
 fi
 
 dos2unix config/extensions.txt
 
-## Install VS Code extensions
+# Install VS Code extensions
 if command -v code &> /dev/null 2>&1; then
-    xargs -n1 -I{} code --install-extension {} --force < config/extensions.txt
+    xargs -I{} code --install-extension {} --force < config/extensions.txt
 fi
 
 # Disable root password login for SSH
 echo "Disabling password authentication for root in SSH..."
 sudo sed -i -E 's/^#?PermitRootLogin.*/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config
-sudo systemctl reload sshd || true
+sudo systemctl reload ssh || true
 
 # Configure UF (if not in Docker)
 echo "Configuring UFW firewall..."

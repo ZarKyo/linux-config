@@ -9,14 +9,15 @@ Post-installation configuration scripts for Ubuntu 24.04. Automates the setup of
 - Ubuntu 24.04
 - Root access
 - Internet connection
+- `make`
 
 ## Usage
 
 Run from inside the `ubuntu/` directory:
 
 ```bash
-sudo bash pre-install.sh            # base workstation setup
-sudo bash pre-install.sh --laptop   # base setup + laptop-specific apps
+make ubuntu           # base workstation setup
+make ubuntu-laptop    # base setup + laptop-specific apps
 ```
 
 `pre-install.sh` is the entry point. It bootstraps the system, then calls `install.sh`. The `--laptop` flag additionally runs `laptop.sh`.

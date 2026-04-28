@@ -3,11 +3,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# Check if root and if Ubuntu 
-if [ "$EUID" -ne 0 ]
-  then echo " ❌ Please run as root"
-  exit
-fi
+# Force sudo password prompt early
+sudo -v
 
 # Install Discord
 DEB_PATH="/tmp/discord-setup.deb"
@@ -57,7 +54,6 @@ if [ ! -f "/usr/bin/signal-desktop" ]; then
 else
     echo "Signal is already installed. Skipping installation."
 fi
-
 
 # Cam parts
 APP_DESKTOP_NOEXIST="${HOME}/.local/share/applications/hu.irl.cameractrls.desktop.noexist"
