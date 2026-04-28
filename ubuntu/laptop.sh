@@ -22,8 +22,8 @@ else
     -o "$DEB_PATH"
 
   echo "Installing Discord..."
-  apt update
-  apt install -y "$DEB_PATH"
+  sudo apt update
+  sudo apt install -y "$DEB_PATH"
 
   # Remove the .deb file
   echo "Removing file $DEB_PATH..."
@@ -40,15 +40,15 @@ if [ ! -f "/usr/bin/signal-desktop" ]; then
     wget -O /tmp/signal_gpg https://updates.signal.org/desktop/apt/keys.asc
 
     # De-Armor Signal GPG key
-    gpg --dearmor < /tmp/signal_gpg | tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+    sudo gpg --dearmor < /tmp/signal_gpg | tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
     rm /tmp/signal_gpg
 
     # Add Signal repository line to sources.list.d
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main" | tee /etc/apt/sources.list.d/signal-xenial.list
 
     # Update package cache and install Signal
-    apt update
-    apt install -y signal-desktop
+    sudo apt update
+    sudo apt install -y signal-desktop
 
     echo "Signal installation completed."
 else
@@ -71,19 +71,21 @@ echo "CameraCtrls not installed (sentinel file missing), proceeding with install
 
 # Install required packages for cameractrls
 echo "Installing required packages..."
-apt update
-apt install -y libsdl2-2.0-0 libturbojpeg git desktop-file-utils
+sudo apt update
+sudo apt install -y libsdl2-2.0-0 libturbojpeg git desktop-file-utils
 
 # Clone cameractrls repository
 echo "Cloning cameractrls repository into $CAMERACTRLS_DIR..."
+
 if [ -d "$CAMERACTRLS_DIR" ]; then
   rm -rf "$CAMERACTRLS_DIR"
 fi
+
 git clone https://github.com/soyersoyer/cameractrls.git "$CAMERACTRLS_DIR"
 
 # Change ownership of the directory
 echo "Changing ownership of $CAMERACTRLS_DIR to ${USER_NAME}:${GROUP_NAME}..."
-chown -R "$USER_NAME:$GROUP_NAME" "$CAMERACTRLS_DIR"
+sudo chown -R "$USER_NAME:$GROUP_NAME" "$CAMERACTRLS_DIR"
 
 # Ensure applications directory exists
 mkdir -p "${HOME}/.local/share/applications"

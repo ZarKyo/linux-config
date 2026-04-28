@@ -24,7 +24,7 @@ make ubuntu-laptop    # base setup + laptop-specific apps
 
 ## What gets installed
 
-**CLI tools** — git, tmux, vim, zsh, nmap, netcat, socat, wireshark, ripgrep, jq, fzf, bat, eza, parallel, foremost, binwalk, ffmpeg, and more.
+**CLI tools** — git, tmux, vim, zsh, netcat, socat, wireshark, ripgrep, jq, fzf, bat, eza, parallel, foremost, binwalk, ffmpeg, and more.
 
 **GUI tools** — Flameshot, Wireshark, Meld, GParted, Ghex, VLC, LibreOffice, Audacity, Okular.
 
@@ -34,7 +34,7 @@ make ubuntu-laptop    # base setup + laptop-specific apps
 
 **Laptop extras** (`--laptop`) — Discord, Signal Desktop, CameraCtrls.
 
-**System hardening** — UFW firewall (deny incoming, allow SSH), SSH configured to reject root password login, Fastfetch on login.
+**System hardening** — UFW firewall (deny incoming, allow SSH), SSH configured to reject root password login.
 
 ## Notes
 

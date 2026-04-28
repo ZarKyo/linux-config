@@ -178,7 +178,7 @@ else
 
     # Install the package 
     echo "Installing VS Code..."
-    sudo apt install -y "$DEB_PATH"
+    sudo apt install -y -qq "$DEB_PATH"
 
     # Remove the .deb file
     echo "Removing file $DEB_PATH..."
@@ -195,9 +195,11 @@ fi
 # Disable root password login for SSH
 echo "Disabling password authentication for root in SSH..."
 sudo sed -i -E 's/^#?PermitRootLogin.*/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config
-sudo systemctl reload ssh || true
+sudo systemctl daemon-reload
+sudo systemctl enable ssh || true
+sudo systemctl restart ssh || true
 
-# Configure UF (if not in Docker)
+# Configure UFW
 echo "Configuring UFW firewall..."
 
 # Set default policies

@@ -28,9 +28,9 @@ export PATH="$PATH:$HOME/.local/bin"
 # Always run install.sh
 echo "[*] Running install.sh"
 bash install.sh
-curl -fsSL https://raw.githubusercontent.com/ZarKyo/utils/refs/heads/main/bin/install-docker.sh -o install-docker.sh
-chmod +x install-docker.sh
-sudo sh install-docker.sh
+curl -fsSL https://raw.githubusercontent.com/ZarKyo/utils/refs/heads/main/bin/install_docker -o install_docker
+chmod +x install_docker
+sudo sh install_docker
 
 # Run laptop script if --laptop is provided
 if [ "$RUN_LAPTOP_SCRIPT" = true ]; then
