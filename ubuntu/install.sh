@@ -52,7 +52,7 @@ sudo apt install -y \
     libreadline-dev libsqlite3-dev libssl-dev libtesseract-dev libxml2-dev libxml2-utils libxmlsec1-dev libyaml-dev libzip-dev \
     linux-tools-common linux-tools-generic llvm locate lsb-release lsof ltrace make meld ncurses-bin net-tools \
     ngrep nmap openssh-client openssh-server openssl parallel perl pkg-config powerline python3-dev python3-pip python3-venv \
-    python3-virtualenv re2c ripgrep rlwrap socat software-properties-common sshpass tk-dev tmate tmux tor traceroute tree ufw \
+    python3-virtualenv re2c ripgrep rlwrap socat software-properties-common sshpass tk-dev tmate tmux tor traceroute trash-cli tree ufw \
     unzip neofetch vbindiff vim wget wl-clipboard xclip xz-utils zip zlib1g-dev zsh asciinema html-xml-utils less
 
 # Install cheat
@@ -66,7 +66,7 @@ curl -LO https://github.com/BurntSushi/xsv/releases/download/0.13.0/xsv-0.13.0-x
 tar -xvzf xsv-0.13.0-x86_64-unknown-linux-musl.tar.gz
 sudo mv xsv /usr/local/bin/
 
-# Install exa and bat equivalents
+# Install eza and bat equivalents
 sudo apt install -y eza bat
 sudo ln -sf /usr/bin/bat /usr/local/bin/batcat
 

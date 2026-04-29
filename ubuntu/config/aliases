@@ -1,16 +1,9 @@
-# exa
-#alias ls="exa --group-directories-first"                   # short, multi-line
-#alias ll="exa -l --group-directories-first"                  # list, file metadata as a table
-#alias la="exa -lagh --group-directories-first"                  # list with info
-#alias lt="exa -a --tree --level=2"  # list with tree level 2
-#alias ltf="exa -a --tree"           # list with tree
-#alias lat="exa -lagh --tree"          # list with info and tree
-
 # Utils
 ## File Management
-alias l="exa -ll --group-directories-first $@"
-alias la="l -a $@"
-alias t="l -T $@"
+alias ls="eza --group-directories-first"
+alias ll="ls -l $@"
+alias la="ll -ag $@"
+alias t="ll -T $@"
 alias t2="t -L 2 $@"
 alias t3="t -L 3 $@"
 alias rm='trash-put'
