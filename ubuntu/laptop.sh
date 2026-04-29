@@ -44,7 +44,7 @@ if [ ! -f "/usr/bin/signal-desktop" ]; then
     rm /tmp/signal_gpg
 
     # Add Signal repository line to sources.list.d
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main" | tee /etc/apt/sources.list.d/signal-xenial.list
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main" | sudo tee /etc/apt/sources.list.d/signal-xenial.list
 
     # Update package cache and install Signal
     sudo apt update
@@ -81,7 +81,7 @@ if [ -d "$CAMERACTRLS_DIR" ]; then
   rm -rf "$CAMERACTRLS_DIR"
 fi
 
-git clone https://github.com/soyersoyer/cameractrls.git "$CAMERACTRLS_DIR"
+sudo git clone https://github.com/soyersoyer/cameractrls.git "$CAMERACTRLS_DIR"
 
 # Change ownership of the directory
 echo "Changing ownership of $CAMERACTRLS_DIR to ${USER_NAME}:${GROUP_NAME}..."
