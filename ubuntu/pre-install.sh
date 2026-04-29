@@ -30,7 +30,7 @@ echo "[*] Running install.sh"
 bash install.sh
 curl -fsSL https://raw.githubusercontent.com/ZarKyo/utils/refs/heads/main/bin/install_docker.sh -o install_docker.sh
 chmod +x install_docker.sh
-sudo sh install_docker.sh
+bash install_docker.sh
 
 # Run laptop script if --laptop is provided
 if [ "$RUN_LAPTOP_SCRIPT" = true ]; then
