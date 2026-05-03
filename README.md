@@ -16,11 +16,12 @@ Post-installation configuration scripts for Ubuntu 24.04. Automates the setup of
 Run from inside the `ubuntu/` directory:
 
 ```bash
-make ubuntu           # base workstation setup
-make ubuntu-laptop    # base setup + laptop-specific apps
+make ubuntu              # base workstation setup
+make ubuntu-laptop       # base setup + laptop-specific apps
+make ubuntu-vm           # base setup + VMware guest tools
 ```
 
-`pre-install.sh` is the entry point. It bootstraps the system, then calls `install.sh`. The `--laptop` flag additionally runs `laptop.sh`.
+`pre-install.sh` is the entry point. It bootstraps the system, then calls `install.sh`. The `--laptop` flag additionally runs `laptop.sh`. The `--vm` flag installs VMware guest tools.
 
 ## What gets installed
 

@@ -6,7 +6,7 @@ See the [repository README](../README.md) for full documentation.
 
 | Script | Role |
 | ------ | ---- |
-| `pre-install.sh` | Entry point. Bootstrap, then calls `install.sh` (and `laptop.sh` with `--laptop`). |
+| `pre-install.sh` | Entry point. Bootstrap, then calls `install.sh`. `--vm` installs VMware guest tools; `--laptop` runs `laptop.sh`. |
 | `install.sh` | Core installation: CLI/GUI tools, Brave, VS Code, Zsh, UFW, SSH hardening. |
 | `laptop.sh` | Optional. Discord, Signal Desktop, CameraCtrls. |
 

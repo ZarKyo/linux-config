@@ -1,6 +1,6 @@
 CHECKPOINT_DISABLE ?= 1
 
-.PHONY: all ubuntu ubuntu-laptop clean dist-clean
+.PHONY: all ubuntu ubuntu-laptop ubuntu-vm ubuntu-vm-laptop clean dist-clean
 
 all: ubuntu
 
@@ -9,6 +9,9 @@ ubuntu:
 
 ubuntu-laptop:
 	cd ubuntu/ && bash pre-install.sh --laptop
+
+ubuntu-vm:
+	cd ubuntu/ && bash pre-install.sh --vm
 
 clean:
 	echo "TODO"

@@ -3,11 +3,14 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# Handle the --laptop argument
+# Handle arguments
 RUN_LAPTOP_SCRIPT=false
+RUN_VM_INSTALL=false
 for arg in "$@"; do
     if [ "$arg" == "--laptop" ]; then
         RUN_LAPTOP_SCRIPT=true
+    elif [ "$arg" == "--vm" ]; then
+        RUN_VM_INSTALL=true
     fi
 done
 
@@ -24,6 +27,12 @@ sudo apt install -y pipx curl vim git wget tzdata sudo tmux
 echo "[*] Installing Pipx"
 pipx ensurepath
 export PATH="$PATH:$HOME/.local/bin"
+
+# Install VMware guest tools if --vm is provided
+if [ "$RUN_VM_INSTALL" = true ]; then
+    echo "[*] Installing VMware guest tools"
+    sudo apt install -y open-vm-tools open-vm-tools-desktop
+fi
 
 # Always run install.sh
 echo "[*] Running install.sh"
