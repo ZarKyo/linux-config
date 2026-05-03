@@ -10,6 +10,9 @@ sudo -v
 DEB_PATH="/tmp/discord-setup.deb"
 DISCORD_BIN="/usr/bin/discord"
 
+# bluetooth manager
+sudo apt install blueman
+
 # Check if Discord is already installed
 if command -v discord >/dev/null 2>&1 || [ -x "$DISCORD_BIN" ]; then
   echo "Discord is already installed."

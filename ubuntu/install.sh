@@ -47,7 +47,7 @@ sudo apt update
 sudo apt install -y \
     apt-transport-https autoconf binwalk bison build-essential bzip2 ca-certificates cloc cmake cmake-curses-gui curl \
     dos2unix expect ffmpeg foremost fswebcam gcc gdb gettext git gnupg hashid hexyl htop hwinfo imagemagick inotify-tools \
-    iproute2 jq kdenlive libbz2-dev libcurl4-openssl-dev libedit-dev libffi-dev libgd-dev libicu-dev libimage-exiftool-perl \
+    iproute2 jq libbz2-dev libcurl4-openssl-dev libedit-dev libffi-dev libgd-dev libicu-dev libimage-exiftool-perl \
     libjpeg-dev libleptonica-dev liblzma-dev libmysqlclient-dev libncursesw5-dev libonig-dev libpcap-dev libpng-dev libpq-dev \
     libreadline-dev libsqlite3-dev libssl-dev libtesseract-dev libxml2-dev libxml2-utils libxmlsec1-dev libyaml-dev libzip-dev \
     linux-tools-common linux-tools-generic llvm locate lsb-release lsof ltrace make meld ncurses-bin net-tools \
@@ -76,7 +76,7 @@ echo "Installing GUI tools..."
 # Wireshark debconf answer
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
 
-sudo apt install -y vlc arandr blueman cheese dunst flameshot ghex gparted kdenlive kompare \
+sudo apt install -y vlc arandr cheese dunst flameshot ghex gparted kdenlive kompare \
     libreoffice meld okular wireshark guvcview audacity policykit-1-gnome
 
 # Optional: install additional tools via third-party or snap
@@ -152,9 +152,11 @@ done
 echo "Shell setup complete. Logout required to apply default shell."
 
 ## 7. Fastfetch
-sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
-sudo apt update
-sudo apt install -y fastfetch
+echo "Try to install Fastfetch"
+( sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch && sudo apt update && sudo apt install -y fastfetch ) || {
+    echo "Warning: fastfetch installation failed, removing PPA and skipping."
+    sudo add-apt-repository -y --remove ppa:zhangsongcui3371/fastfetch || true
+}
 
 ## Cheat folder creation
 mkdir -p ~/.local/share/cheats
@@ -227,5 +229,15 @@ cp wallpaper.jpg "$WALLPAPER"
 
 gsettings set org.gnome.desktop.background picture-uri "file://$WALLPAPER"
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$WALLPAPER"
+
+# Flameshot autostart
+mkdir -p "$HOME/.config/autostart"
+cat > "$HOME/.config/autostart/flameshot.desktop" <<'EOF'
+[Desktop Entry]
+Type=Application
+Name=Flameshot
+Exec=flameshot
+X-GNOME-Autostart-enabled=true
+EOF
 
 sudo chown -R "$USER:$USER" "$HOME/"
