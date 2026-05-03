@@ -232,11 +232,13 @@ gsettings set org.gnome.desktop.background picture-uri-dark "file://$WALLPAPER"
 
 # Flameshot autostart
 mkdir -p "$HOME/.config/autostart"
-cat > "$HOME/.config/autostart/flameshot.desktop" <<'EOF'
+cat > "$HOME/.config/autostart/Flameshot.desktop" <<'EOF'
 [Desktop Entry]
-Type=Application
-Name=Flameshot
+Name=flameshot
+Icon=flameshot
 Exec=flameshot
+Terminal=false
+Type=Application
 X-GNOME-Autostart-enabled=true
 EOF
 
