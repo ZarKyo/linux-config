@@ -43,6 +43,26 @@ make ubuntu-vm           # base setup + VMware guest tools
 - Most operations are idempotent; re-running is safe.
 - A logout is required after the first run for the Zsh shell change to take effect.
 
+## Known issues
+
+### Black screen after login on Ubuntu 24.04 with GDM3
+
+On some Ubuntu 24.04 installations, GDM3 can leave the session on a black screen after a successful login (cursor visible, no desktop). The issue is intermittent and appears tied to GDM3 / Wayland interactions on this release.
+
+**Workaround** — switch the display manager to LightDM, which behaves more reliably:
+
+```bash
+sudo apt-get install -y lightdm
+sudo dpkg-reconfigure lightdm   # select lightdm when prompted
+sudo systemctl reboot
+```
+
+To revert to GDM3:
+
+```bash
+sudo dpkg-reconfigure gdm3
+```
+
 ## Disclaimer
 
 These scripts modify system configuration, install many packages, and change security settings.
