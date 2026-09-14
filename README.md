@@ -25,17 +25,17 @@ make ubuntu-vm           # base setup + VMware guest tools
 
 ## What gets installed
 
-**CLI tools** — git, tmux, vim, zsh, netcat, socat, wireshark, ripgrep, jq, fzf, bat, eza, parallel, foremost, binwalk, ffmpeg, and more.
+**CLI tools** - git, tmux, vim, zsh, netcat, socat, wireshark, ripgrep, jq, fzf, bat, eza, parallel, foremost, binwalk, ffmpeg, and more.
 
-**GUI tools** — Flameshot, Wireshark, Meld, GParted, Ghex, VLC, LibreOffice, Audacity, Okular.
+**GUI tools** - Flameshot, Wireshark, Meld, GParted, Ghex, VLC, LibreOffice, Audacity, Okular.
 
-**Applications** — Brave Browser, VS Code (with extensions from `config/extensions.txt`), OnlyOffice, Glow, Docker.
+**Applications** - Brave Browser, VS Code (with extensions from `config/extensions.txt`), OnlyOffice, Glow, Docker.
 
-**Shell** — Zsh with Oh My Zsh, autosuggestions, syntax highlighting, fzf integration. Shell config and aliases are deployed from `config/zshrc` and `config/aliases`.
+**Shell** - Zsh with Oh My Zsh, autosuggestions, syntax highlighting, fzf integration. Shell config and aliases are deployed from `config/zshrc` and `config/aliases`.
 
-**Laptop extras** (`--laptop`) — Discord, Signal Desktop, CameraCtrls.
+**Laptop extras** (`--laptop`) - Discord, Signal Desktop, CameraCtrls.
 
-**System hardening** — UFW firewall (deny incoming, allow SSH), SSH configured to reject root password login.
+**System hardening** - UFW firewall (deny incoming, allow SSH), SSH configured to reject root password login.
 
 ## Notes
 
@@ -49,7 +49,7 @@ make ubuntu-vm           # base setup + VMware guest tools
 
 On some Ubuntu 24.04 installations, GDM3 can leave the session on a black screen after a successful login (cursor visible, no desktop). The issue is intermittent and appears tied to GDM3 / Wayland interactions on this release.
 
-**Workaround** — switch the display manager to LightDM, which behaves more reliably:
+**Workaround** - switch the display manager to LightDM, which behaves more reliably:
 
 ```bash
 sudo apt-get install -y lightdm
@@ -65,8 +65,7 @@ sudo dpkg-reconfigure gdm3
 
 ## Disclaimer
 
-These scripts modify system configuration, install many packages, and change security settings.
-Review them carefully before running on a production or sensitive machine.
+These scripts modify system configuration, install many packages, and change security settings. Review them carefully before running on a production or sensitive machine.
 
 ---
 
